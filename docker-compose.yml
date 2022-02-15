@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+
+  backendserver:
+    build: ./jumia-customer/
+    ports:
+           - "8081"
+  
+    restart: always
+  frontend:
+    build: ./jumia/
+    links:
+           - "backendserver"
+    depends_on:
+           - "backendserver"
+    ports:
+           - "80:80"      
